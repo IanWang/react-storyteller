@@ -4,11 +4,12 @@ const webpack = require('webpack')
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
-    demo: './example/app',
+    'example/demo.bundle.js': './example/app',
+    'dist/react-storyteller.js': './src'
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'example')
+    filename: '[name]',
+    path: path.resolve(__dirname)
   },
   module: {
     rules: [
