@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack --watch",
-    "clean": "rimraf lib",
+    "clean": "rimraf dist",
     "prepublish": "npm run clean && npm run compile",
     "compile": "babel src --loose --out-dir dist"
   },

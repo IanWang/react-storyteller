@@ -4,8 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    'example/demo.bundle.js': './example/app',
-    'dist/react-storyteller.js': './src'
+    'example/demo.bundle.js': './example/app'
   },
   output: {
     filename: '[name]',
