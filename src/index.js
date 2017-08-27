@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Storyteller extends Component {
@@ -11,7 +11,8 @@ class Storyteller extends Component {
   }
 
   componentDidMount() {
-    this._generateStory()
+    const story = this._generateStory()
+    story()
   }
 
   render() {
@@ -30,30 +31,30 @@ class Storyteller extends Component {
   }
 
   _generateStory() {
-    let { storyNarrative } = this.props
+    let { narrative } = this.props
 
     const MAX = 500 // prevent infinite loop...
     let display = ''
     let tryTime = 0
     let that = this
 
-    return function getText(index) {
+    return function renderText(index = 0) {
 
-      if(display.length < storyNarrative.length && tryTime < MAX) {
+      if(display.length < narrative.length && tryTime < MAX) {
         tryTime ++
 
-        let newChar = storyNarrative.charAt(index)
+        let newChar = narrative.charAt(index)
         display += newChar
 
         that.setState({ story: display })
-        return setTimeout(() => getText(index + 1), 30)
+        return setTimeout(() => renderText(index + 1), 30)
       }
     }
   }
 }
 
 Storyteller.propType = {
-  storyNarrative: PropTypes.string.isRequired,
+  narrative: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 }
 
