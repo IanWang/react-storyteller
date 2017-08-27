@@ -24,12 +24,11 @@ class Storyteller extends Component {
           { children }
         </div>
 
-        <style
-          dangerouslySetInnerHTML={{__html: storyDisplay}} />
-
         <div
           className='react-storyteller__story'
           style={{ whiteSpace: 'pre-wrap' }}>
+          <style
+            dangerouslySetInnerHTML={{__html: storyDisplay}} />
           { storyDisplay }
         </div>
       </div>

@@ -1,5 +1,6 @@
 node_modules
-.swp
 src
 example
 .babelrc
+*.log
+*.swp
