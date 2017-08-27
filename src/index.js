@@ -6,56 +6,67 @@ class Storyteller extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      story: ''
+      storyDisplay: ''
     }
   }
 
   componentDidMount() {
-    const story = this._generateStory()
-    story()
+    this._displayStory()
   }
 
   render() {
-    let { story } = this.state
+    let { storyDisplay } = this.state
     let { children } = this.props
 
     return (
-      <div className='app'>
-        <div>
+      <div className='react-storyteller'>
+        <div className='react-storyteller__template'>
           { children }
         </div>
-        <style dangerouslySetInnerHTML={{__html: story}} />
-        <div style={{ whiteSpace: 'pre-line' }}>{ story }</div>
+
+        <style
+          dangerouslySetInnerHTML={{__html: storyDisplay}} />
+
+        <div
+          className='react-storyteller__story'
+          style={{ whiteSpace: 'pre-wrap' }}>
+          { storyDisplay }
+        </div>
       </div>
     )
   }
 
-  _generateStory() {
-    let { narrative } = this.props
+  _displayStory() {
+    let { story, speed } = this.props
 
-    const MAX = 500 // prevent infinite loop...
-    let display = ''
-    let tryTime = 0
-    let that = this
+    let storyDisplay = ''
 
-    return function renderText(index = 0) {
+    const renderText = (index = 0) => {
 
-      if(display.length < narrative.length && tryTime < MAX) {
-        tryTime ++
+      if(storyDisplay.length < story.length) {
 
-        let newChar = narrative.charAt(index)
-        display += newChar
+        let newChar = story.charAt(index)
+        let nextChar = index + 1
+        storyDisplay += newChar
 
-        that.setState({ story: display })
-        return setTimeout(() => renderText(index + 1), 30)
+        this.setState({ storyDisplay })
+
+        setTimeout(() => renderText(nextChar), speed)
       }
     }
+
+    renderText()
   }
 }
 
 Storyteller.propType = {
-  narrative: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  story: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  speed: PropTypes.number.isRequired
+}
+
+Storyteller.defaultProps = {
+  speed: 40
 }
 
 export default Storyteller

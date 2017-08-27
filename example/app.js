@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom'
 
 import Storyteller from '../src'
 
-const narrative = `
+const story = `
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   color: red;
-}
-`
+}`
 
 const App = () => {
   return (
     <div>
-      <Storyteller narrative={narrative}>
+      <Storyteller story={story}>
         <h1>HI</h1>
       </Storyteller>
     </div>

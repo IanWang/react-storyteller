@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: {
     'example/demo.bundle.js': './example/app',
     'dist/react-storyteller.js': './src'
